@@ -23,11 +23,24 @@ class AuthService {
     required CategoryType industry,
   }) async {
     try {
+      // Check if tax_no is already used
+      final query = await FirebaseFirestore.instance
+          .collection('users')
+          .where('tax_no', isEqualTo: taxRegistryNumber)
+          .limit(1)
+          .get();
+
+      if (query.docs.isNotEmpty) {
+        throw Exception('A company with this tax number already exists.');
+      }
+
+      // Create user in Firebase Auth
       final userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       final user = userCredential.user;
+
       if (user != null) {
         await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
           'company_name': companyName,
@@ -47,7 +60,6 @@ class AuthService {
       if (kDebugMode) {
         print('Firebase Auth Exception: ${e.code} - ${e.message}');
       }
-      // Handle specific Firebase Auth errors
       if (e.code == 'email-already-in-use') {
         throw Exception('The email address is already in use.');
       } else if (e.code == 'invalid-email') {
