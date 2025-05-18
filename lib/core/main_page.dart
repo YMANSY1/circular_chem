@@ -1,9 +1,9 @@
-import 'package:circular_chem_app/features/cart/cart_screen.dart';
+import 'package:circular_chem_app/features/marketplace/screens/cart_screen.dart';
 import 'package:circular_chem_app/features/marketplace/screens/orders_page.dart';
-import 'package:circular_chem_app/features/settings/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../features/auth/screens/profile_screen.dart';
 import '../features/marketplace/screens/marketplace_page.dart';
 
 class MainPage extends StatefulWidget {

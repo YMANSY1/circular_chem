@@ -1,9 +1,9 @@
 import 'package:circular_chem_app/core/models/category_enum.dart';
+import 'package:circular_chem_app/core/widgets/category_dropdown.dart';
 import 'package:circular_chem_app/features/auth/controllers/auth_controller.dart';
 import 'package:circular_chem_app/features/auth/services/auth_service.dart';
 import 'package:circular_chem_app/features/auth/widgets/auth_button.dart';
 import 'package:circular_chem_app/features/auth/widgets/auth_field.dart';
-import 'package:circular_chem_app/features/auth/widgets/category_dropdown.dart';
 import 'package:circular_chem_app/features/auth/widgets/grey_text_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

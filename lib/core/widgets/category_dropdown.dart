@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/models/category_enum.dart';
+import '../models/category_enum.dart';
 
 class CategoryDropdown extends StatelessWidget {
   final double width;

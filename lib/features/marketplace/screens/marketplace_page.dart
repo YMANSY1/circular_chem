@@ -60,78 +60,7 @@ class MarketplacePage extends StatelessWidget {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEtjSGKkHD9J0pxggKQyuRTE2jk2zm2zmK2A&s'),
   ];
 
-  List<Item> get items => [
-        Item(
-          'Recycled Aluminum Sheets',
-          featuredSellers[0], // Lafarge Egypt
-          categories[0], // Metal Materials
-          4.5,
-          1200.0,
-        ),
-        Item(
-          'Plastic Resin Pellets',
-          featuredSellers[6], // Misr El Hegaz
-          categories[1], // Plastic Components
-          4.2,
-          850.0,
-        ),
-        Item(
-          'Cotton Waste Rolls',
-          featuredSellers[7], // Oriental Weavers
-          categories[2], // Textiles & Fabrics
-          4.7,
-          600.0,
-        ),
-        Item(
-          'Wood Dust Briquettes',
-          featuredSellers[4], // Suez Steel
-          categories[3], // Wood & Sawdust
-          4.0,
-          400.0,
-        ),
-        Item(
-          'Used Rubber Mats',
-          featuredSellers[5], // Ezz Steel
-          categories[5], // Rubber & Elastomers
-          3.9,
-          320.0,
-        ),
-        Item(
-          'PVC Scrap Bundles',
-          featuredSellers[2], // Jotun Egypt
-          categories[1], // Plastic Components
-          4.4,
-          910.0,
-        ),
-        Item(
-          'Faded Denim Offcuts',
-          featuredSellers[3], // Arabian Cement Co.
-          categories[2], // Textiles & Fabrics
-          4.6,
-          700.0,
-        ),
-        Item(
-          'Rubber Crumb Bags',
-          featuredSellers[1], // Elsewedy Electric
-          categories[5], // Rubber & Elastomers
-          4.3,
-          290.0,
-        ),
-        Item(
-          'Reclaimed Wood Panels',
-          featuredSellers[0], // Lafarge Egypt
-          categories[3], // Wood & Sawdust
-          4.1,
-          1100.0,
-        ),
-        Item(
-          'Industrial Solvent Waste',
-          featuredSellers[1], // Elsewedy Electric
-          categories[4], // Chemical Byproducts
-          3.8,
-          500.0,
-        ),
-      ];
+  List<Item> get items => [];
 
   @override
   Widget build(BuildContext context) {

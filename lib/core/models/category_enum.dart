@@ -24,9 +24,7 @@ enum CategoryType {
         throw Exception('Invalid CategoryType type: $value');
     }
   }
-}
 
-extension CategoryTypeExtension on CategoryType {
   String get name {
     switch (this) {
       case CategoryType.metalMaterials:

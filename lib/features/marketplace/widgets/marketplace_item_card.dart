@@ -20,7 +20,13 @@ class MarketplaceItemCard extends StatelessWidget {
               width: 70,
               height: 70,
               decoration: BoxDecoration(
-                color: Colors.grey.shade300, // Static color for now
+                image: item.imageUrl != null
+                    ? DecorationImage(
+                        image: NetworkImage(item.imageUrl!),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
+                color: Colors.grey.shade300,
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
@@ -38,7 +44,7 @@ class MarketplaceItemCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Text(item.seller.name,
+                  Text(item.sellingCompany.companyName,
                       style: TextStyle(color: Colors.grey[700])),
                   const SizedBox(height: 4),
                   Text(item.category.name,
