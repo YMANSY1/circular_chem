@@ -25,7 +25,10 @@ class AccountSettingsSection extends StatelessWidget {
     final AuthService authService = AuthService(FirebaseAuth.instance);
 
     return Column(children: [
-      ProfilePicture(),
+      ProfilePicture(
+        profilePictureUrl: company.profilePicUrl,
+        onUpdateSuccess: onUpdateSuccess,
+      ),
       const SizedBox(height: 20),
       SettingsCard(
         settingsTiles: [
@@ -40,10 +43,11 @@ class AccountSettingsSection extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return ChangeNameDialog(
-                    newNameController: controller,
-                    currentName: company.companyName,
-                    onUpdateSuccess: onUpdateSuccess, // Pass the callback
+                  return ChangeFieldDialog(
+                    newValueController: controller,
+                    currentValue: company.companyName,
+                    onUpdateSuccess: onUpdateSuccess, valueName: 'Name',
+                    fieldName: 'company_name', // Pass the callback
                   );
                 },
               );

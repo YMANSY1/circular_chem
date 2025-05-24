@@ -11,7 +11,7 @@ class Item {
   final double rating;
   final double price;
   final String? imageUrl;
-  final int echoPoints;
+  final int ecoPoints;
   final int numberOfOrders;
   final bool isApproved;
   final String? description;
@@ -24,7 +24,7 @@ class Item {
     required this.category,
     this.rating = 0,
     required this.price,
-    this.echoPoints = 0,
+    this.ecoPoints = 0,
     this.numberOfOrders = 0,
     this.imageUrl,
     this.isApproved = false,
@@ -43,7 +43,7 @@ class Item {
           rating == other.rating &&
           price == other.price &&
           imageUrl == other.imageUrl &&
-          echoPoints == other.echoPoints &&
+          ecoPoints == other.ecoPoints &&
           numberOfOrders == other.numberOfOrders &&
           isApproved == other.isApproved &&
           description == other.description &&
@@ -57,7 +57,7 @@ class Item {
       rating.hashCode ^
       price.hashCode ^
       imageUrl.hashCode ^
-      echoPoints.hashCode ^
+      ecoPoints.hashCode ^
       numberOfOrders.hashCode ^
       isApproved.hashCode ^
       description.hashCode ^
@@ -97,7 +97,7 @@ class Item {
       rating: rating ?? this.rating,
       price: price ?? this.price,
       imageUrl: imageUrl ?? this.imageUrl,
-      echoPoints: echoPoints ?? this.echoPoints,
+      ecoPoints: echoPoints ?? this.ecoPoints,
       numberOfOrders: numberOfOrders ?? this.numberOfOrders,
       isApproved: isApproved ?? this.isApproved,
       description: description ?? this.description,
@@ -113,7 +113,7 @@ class Item {
       'rating': rating,
       'price': price,
       'imageUrl': imageUrl,
-      'echoPoints': echoPoints,
+      'echoPoints': ecoPoints,
       'numberOfOrders': numberOfOrders,
       'isApproved': isApproved,
       'description': description,
@@ -130,7 +130,7 @@ class Item {
       rating: map['rating'] as double,
       price: map['price'] as double,
       imageUrl: map['imageUrl'] as String,
-      echoPoints: map['echoPoints'] as int,
+      ecoPoints: map['echoPoints'] as int,
       numberOfOrders: map['numberOfOrders'] as int,
       isApproved: map['isApproved'] as bool,
       description: map['description'] as String,

@@ -18,7 +18,7 @@ class UserItemsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Your Items'),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -47,7 +47,6 @@ class UserItemsScreen extends StatelessWidget {
                   return ItemsListView(items: items);
                 }
               } else {
-                // Add a default return here
                 return Expanded(
                     child: const Center(child: Text('No items found.')));
               }

@@ -1,55 +1,56 @@
 import 'package:circular_chem_app/features/auth/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class ChangeNameDialog extends StatefulWidget {
-  final TextEditingController newNameController;
-  final String currentName;
+class ChangeFieldDialog extends StatefulWidget {
+  final TextEditingController newValueController;
+  final String currentValue;
+  final String valueName;
+  final String fieldName;
   final Function onUpdateSuccess;
 
-  const ChangeNameDialog({
+  const ChangeFieldDialog({
     Key? key,
-    required this.newNameController,
-    required this.currentName,
+    required this.newValueController,
+    required this.currentValue,
     required this.onUpdateSuccess,
+    required this.valueName,
+    required this.fieldName,
   }) : super(key: key);
 
   @override
-  State<ChangeNameDialog> createState() => _ChangeNameDialogState();
+  State<ChangeFieldDialog> createState() => _ChangeFieldDialogState();
 }
 
-class _ChangeNameDialogState extends State<ChangeNameDialog> {
+class _ChangeFieldDialogState extends State<ChangeFieldDialog> {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Change Name'),
+      title: Text('Change ${widget.valueName}'),
       content: Form(
         key: _formKey,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
-              initialValue: widget.currentName,
-              decoration: const InputDecoration(labelText: 'Current Name'),
+              initialValue: widget.currentValue,
+              decoration:
+                  InputDecoration(labelText: 'Current ${widget.valueName}'),
               enabled: false,
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 16),
             TextFormField(
-              controller: widget.newNameController,
-              decoration: const InputDecoration(labelText: 'New Name'),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(50),
-              ],
+              controller: widget.newValueController,
+              decoration: InputDecoration(labelText: 'New ${widget.valueName}'),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Please enter a new name';
+                  return 'Please enter a new ${widget.valueName.toLowerCase()}';
                 }
-                if (value.trim() == widget.currentName.trim()) {
-                  return 'New name must be different from the current name';
+                if (value.trim() == widget.currentValue.trim()) {
+                  return 'New name must be different from the current ${widget.valueName.toLowerCase()}';
                 }
                 return null;
               },
@@ -69,8 +70,8 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
             if (_formKey.currentState!.validate()) {
               await AuthService(FirebaseAuth.instance).editUserInformation(
                 context,
-                'company_name',
-                widget.newNameController.text.trim(),
+                widget.fieldName,
+                widget.newValueController.text.trim(),
               );
               widget.onUpdateSuccess();
             }

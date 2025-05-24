@@ -1,19 +1,26 @@
+import 'package:circular_chem_app/features/auth/widgets/change_name_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePicture extends StatelessWidget {
   const ProfilePicture({
     super.key,
+    this.profilePictureUrl,
+    required this.onUpdateSuccess,
   });
+
+  final String? profilePictureUrl;
+  final VoidCallback onUpdateSuccess;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Stack(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 60,
             backgroundImage: NetworkImage(
-              'https://via.placeholder.com/150', // Placeholder image
+              profilePictureUrl ??
+                  'https://via.placeholder.com/150', // Placeholder image
             ),
           ),
           Positioned(
@@ -27,7 +34,18 @@ class ProfilePicture extends StatelessWidget {
                 iconSize: 18,
                 icon: Icon(Icons.edit, color: Colors.grey[700]),
                 onPressed: () {
-                  // Handle profile picture edit
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return ChangeFieldDialog(
+                        newValueController: TextEditingController(),
+                        currentValue: profilePictureUrl ?? 'None',
+                        onUpdateSuccess: onUpdateSuccess,
+                        valueName: 'Profile Picture',
+                        fieldName: 'profile_picture_url',
+                      );
+                    },
+                  );
                 },
               ),
             ),

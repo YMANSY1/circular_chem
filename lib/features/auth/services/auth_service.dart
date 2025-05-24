@@ -127,7 +127,7 @@ class AuthService {
       if (userData.exists) {
         final Map<String, dynamic>? companyMap = userData.data();
         if (companyMap != null) {
-          return Company.fromMap(companyMap);
+          return Company.fromMap(companyMap, id: uid);
         } else {
           return null;
         }

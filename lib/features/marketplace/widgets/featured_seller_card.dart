@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/seller.dart';
+import '../../../core/models/company.dart';
 
 class FeaturedSellerCard extends StatelessWidget {
   const FeaturedSellerCard({
@@ -8,7 +8,7 @@ class FeaturedSellerCard extends StatelessWidget {
     required this.featuredSeller,
   });
 
-  final Seller featuredSeller;
+  final Company featuredSeller;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class FeaturedSellerCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             color: Colors.lightBlue,
             image: DecorationImage(
-              image: NetworkImage(featuredSeller.imageUrl),
+              image: NetworkImage(featuredSeller.profilePicUrl!),
               fit: BoxFit.fill,
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 4),
-          child: Text(featuredSeller.name),
+          child: Text(featuredSeller.companyName),
         )
       ],
     );

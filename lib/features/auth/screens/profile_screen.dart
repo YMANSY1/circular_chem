@@ -1,6 +1,8 @@
 import 'package:circular_chem_app/features/auth/services/auth_service.dart';
 import 'package:circular_chem_app/features/auth/widgets/account_settings_tile.dart';
 import 'package:circular_chem_app/features/auth/widgets/user_info_card.dart';
+import 'package:circular_chem_app/features/echo_points/screens/echo_points_leaderboard.dart';
+import 'package:circular_chem_app/features/echo_points/screens/your_eco_points_screen.dart';
 import 'package:circular_chem_app/features/marketplace/screens/user_items_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,14 +61,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               } else if (snapshot.hasData) {
                 final company = snapshot.data;
                 if (company == null) {
-                  return Text(
-                      'Company data does not exist or could not be parsed.');
+                  return Column(
+                    children: [
+                      Text(
+                          'Company data does not exist or could not be parsed.'),
+                      _buildEcoPointsSection(
+                          null), // Pass null when no company data
+                    ],
+                  );
                 } else {
                   print(company.industry.name);
-                  return AccountSettingsSection(
-                    company: company,
-                    onUpdateSuccess:
-                        _refreshCompanyData, // Pass the refresh callback
+                  return Column(
+                    children: [
+                      AccountSettingsSection(
+                        company: company,
+                        onUpdateSuccess: _refreshCompanyData,
+                      ),
+                      _buildEcoPointsSection(company), // Pass company data
+                    ],
                   );
                 }
               } else {
@@ -74,48 +86,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return Text('Unknown Error');
               }
             },
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0, bottom: 8),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.trending_up,
-                  color: Colors.amberAccent,
-                  size: 24,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Echo Points',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.amberAccent),
-                ),
-              ],
-            ),
-          ),
-          SettingsCard(
-            settingsTiles: [
-              CardSettingsTile(
-                label: 'Echo Points Leaderboard',
-                iconColor: Colors.amber[700]!,
-                icon: Icons.leaderboard,
-                onPressed: () {},
-              ),
-              CardSettingsTile(
-                label: 'Your Echo Points',
-                iconColor: Colors.purple[600]!,
-                icon: Icons.stars,
-                onPressed: () {},
-              ),
-              CardSettingsTile(
-                label: 'Echo Points Form',
-                iconColor: Colors.blue[600]!,
-                icon: Icons.edit_document,
-                onPressed: () {},
-              ),
-            ],
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -148,6 +118,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildEcoPointsSection(dynamic company) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.trending_up,
+                color: Colors.amberAccent,
+                size: 24,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Eco Points',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.amberAccent),
+              ),
+            ],
+          ),
+        ),
+        SettingsCard(
+          settingsTiles: [
+            CardSettingsTile(
+              label: 'Eco Points Leaderboard',
+              iconColor: Colors.amber[700]!,
+              icon: Icons.leaderboard,
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => EcoPointsLeaderboardScreen())),
+            ),
+            CardSettingsTile(
+              label: 'Your Eco Points',
+              iconColor: Colors.purple[600]!,
+              icon: Icons.stars,
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => YourEcoPointsScreen(company: company))),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

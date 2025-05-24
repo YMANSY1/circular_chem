@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/seller.dart';
+import '../../../core/models/company.dart';
 import 'featured_seller_card.dart';
 
 class FeaturedSellerListView extends StatelessWidget {
@@ -9,7 +9,7 @@ class FeaturedSellerListView extends StatelessWidget {
     required this.featuredSellers,
   });
 
-  final List<Seller> featuredSellers;
+  final List<Company> featuredSellers;
 
   @override
   Widget build(BuildContext context) {
